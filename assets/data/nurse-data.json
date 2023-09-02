@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Nurse 1",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 2,
+    "name": "Nurse 2",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 3,
+    "name": "Nurse 3",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 4,
+    "name": "Nurse 4",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 5,
+    "name": "Nurse 5",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 6,
+    "name": "Nurse 6",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 7,
+    "name": "Nurse 7",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 8,
+    "name": "Nurse 8",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 9,
+    "name": "Nurse 9",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  }
+]

@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:task_nurses/constants/constants.dart';
+import 'package:task_nurses/model/nurse_model.dart';
+import 'package:task_nurses/pages/pdf_preview.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -21,25 +26,39 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
-
+  List<NurseModel> nurseModel = [];
   String selectedTask = '';
   String selectedBed = '';
 
-  int _counter = 0;
+  int x = 1;
+  int y = 9;
 
   void _incrementCounter() {
+    print('printExecuted true');
     setState(() {
-      _counter++;
+      for(var v in nurseModel) {
+        if(x == v.id && v.tasks.length < 6){
+          v.tasks.add(selectedBed);
+        }
+      }
+      // if(x == 9)
+      x++;
     });
+    print('printExecuted ${nurseModel[0].tasks}');
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedBed = bedNumber[0];
     selectedTask = tasks[0];
+
+    rootBundle.loadString('assets/data/nurse-data.json').then((value) {
+      List list = json.decode(value);
+      for (var v in list) {
+        nurseModel.add(NurseModel.fromJson(v));
+      }
+    });
   }
 
   @override
@@ -115,6 +134,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ],
               ),
+              const SizedBox(height: 10,),
+              TextButton(
+                onPressed: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PdfPreviewPage(nurseModel: nurseModel),
+                    ),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFFFF725C),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: const BorderSide(color: Color(0xFFFF725C))),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                  child: Text(
+                    'Generate PDF',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
