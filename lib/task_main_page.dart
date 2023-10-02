@@ -41,10 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
           v.tasks.add(selectedBed);
         }
       }
-      // if(x == 9)
+      if(x == 9) {
+        print('printThisIfFull true');
+      }
       x++;
     });
-    print('printExecuted ${nurseModel[0].tasks}');
   }
 
   @override

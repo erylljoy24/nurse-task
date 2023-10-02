@@ -1,0 +1,4 @@
+CREATE TABLE nurses (
+    id INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+);

@@ -1,32 +1,48 @@
 import 'dart:typed_data';
 
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:task_nurses/model/nurse_model.dart';
 
 Future<Uint8List> makePdf(List<NurseModel> nurseModel) async {
   final pdf = Document();
+  DateTime now = DateTime.now();
+  DateTime date = DateTime(now.year, now.month, now.day);
   pdf.addPage(
     Page(
+      pageTheme: PageTheme(
+          pageFormat: PdfPageFormat.a4.landscape,
+      ),
       build: (context) {
         return Column(
           children: [
+            Center(
+              child: Column(
+                children: [
+                  Text('Medical Telemetry'),
+                  Text('Assignment'),
+                ]
+              )
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
-                    Text("Attention to: Lorem Ipsum"),
+                    Text(date.toString().replaceAll("00:00:00.000", "")),
+                    Text('Charge Nurse: Jigzy'),
                   ],
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
               ],
             ),
-            Container(height: 50),
+            Container(height: 30),
             ListView.builder(
+              direction: Axis.horizontal,
               itemCount: nurseModel.length,
               itemBuilder: ((context, index){
                   return Container(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(right: 20),
                     child: Column(
                       children: [
                         Text(
@@ -48,16 +64,6 @@ Future<Uint8List> makePdf(List<NurseModel> nurseModel) async {
                 }
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(30),
-              child: Text(
-                'Please ensure all cheques are payable to the ADAM FAMILY TRUST.',
-                style: Theme.of(context).header3.copyWith(
-                  fontStyle: FontStyle.italic,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            )
           ],
         );
       },
