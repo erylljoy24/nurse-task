@@ -4,11 +4,12 @@ List<String> tasks = [
   'Blood Transfusion',
   'CIWA',
   'Covid Isolation',
-  'Discharge',
+  'DC Soon',
   'Keep same set',
   'Isolation',
-  'FSBG (Blood sugar check)',
+  'FSBG',
   'Heparin Drip',
+  'Telemetry'
 ];
 
 List<String> nurses = [

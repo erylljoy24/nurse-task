@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "PCT 1",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 2,
+    "name": "PCT 2",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 3,
+    "name": "PCT 3",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 4,
+    "name": "PCT 4",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+  {
+    "id": 5,
+    "name": "PCT 5",
+    "is_online": true,
+    "tasks": [],
+    "max_task": 5
+  },
+]

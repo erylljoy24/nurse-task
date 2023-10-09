@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task_nurses/constants/constants.dart';
 import 'package:task_nurses/model/nurse_model.dart';
+import 'package:task_nurses/model/pct_model.dart';
 import 'package:task_nurses/pages/pdf_preview.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,6 +19,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<NurseModel> nurseModel = [];
+  List<PctModel> pctModel = [];
   String selectedTask = '';
   String selectedBed = '';
 
@@ -32,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       } else {
         for(var v in nurseModel) {
           if(x == v.id && v.tasks.length < 6){
-            v.tasks.add('$selectedBed - $selectedTask');
+            v.tasks.add('$selectedBed');
           }
         }
         if(x == 9) {
@@ -54,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
       List list = json.decode(value);
       for (var v in list) {
         nurseModel.add(NurseModel.fromJson(v));
+      }
+    });
+    rootBundle.loadString('assets/data/pct-data.json').then((value) {
+      List list = json.decode(value);
+      for (var v in list) {
+        pctModel.add(PctModel.fromJson(v));
       }
     });
   }
@@ -155,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  nurseModel[index].name,
+                                  pctModel[index].name,
                                   style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -165,10 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const SizedBox(height: 5),
                                 ListView.builder(
                                     shrinkWrap: true,
-                                    itemCount: nurseModel[index].tasks.length,
+                                    itemCount: pctModel[index].tasks.length,
                                     itemBuilder: ((context, index2) {
                                       return Text(
-                                          nurseModel[index].tasks[index2],
+                                          pctModel[index].tasks[index2],
                                           style: const TextStyle(
                                               fontSize: 16
                                           )
@@ -178,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ]
                           );
                         },
-                        itemCount: nurseModel.length,/// Total number of items in the first GridView
+                        itemCount: pctModel.length,/// Total number of items in the first GridView
                       ),
                     ),
                   ],
@@ -253,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: (){
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => PdfPreviewPage(nurseModel: nurseModel),
+                        builder: (context) => PdfPreviewPage(nurseModel: nurseModel, pctData: pctModel,),
                       ),
                     );
                   },
