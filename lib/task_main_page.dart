@@ -22,26 +22,47 @@ class _MyHomePageState extends State<MyHomePage> {
   List<PctModel> pctModel = [];
   String selectedTask = '';
   String selectedBed = '';
+  String tempSelectedBed = '';
+  bool itContains = false;
 
   int x = 1;
   int y = 9;
 
   void _incrementCounter() {
     NurseModel model = nurseModel.last;
+
     setState(() {
       if(model.tasks.length == 5){
         _showAlertDialog('List already full');
       } else {
         for(var v in nurseModel) {
-          if(x == v.id && v.tasks.length < 6){
-            v.tasks.add('$selectedBed');
+          if(x == v.id && v.tasks.length < 6) {
+            print('printIndexHere $x');
+            String selectedItem = '$selectedBed - $selectedTask';
+            for (int i = 0; v.tasks.length > i; i++) {
+              if (v.tasks[i].contains(selectedBed)) {
+                // x-1;
+                itContains = true;
+                selectedItem = v.tasks[i] += ', $selectedTask';
+                v.tasks[i] = selectedItem;
+
+              }
+            }
+            v.tasks.add(selectedItem);
           }
         }
-        if(x == 9) {
-          x = 1;
+        print('printTrue $tempSelectedBed $selectedBed');
+        if(tempSelectedBed != selectedBed) {
+          if(x == 9) {
+            x = 1;
+          } else {
+            x++;
+          }
         } else {
-          x++;
+          print('itGoesHere true');
         }
+        tempSelectedBed = selectedBed;
+
       }
     });
   }
@@ -116,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisCount: 2, // Number of columns in the first grid
                           crossAxisSpacing: 1.0,
                           mainAxisSpacing: 1.0,
-                          childAspectRatio: 3,
+                          childAspectRatio: 4,
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           return Column(

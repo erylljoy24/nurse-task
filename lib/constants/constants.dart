@@ -26,7 +26,6 @@ List<String> nurses = [
 
 List<String> bedNumber = [
   // South Side
-  'South Side',
   'Room 511',
   'Room 512',
   'Room 513',
@@ -35,7 +34,7 @@ List<String> bedNumber = [
   'Room 516',
   'Room 517',
   'Room 518',
-  'Room519',
+  'Room 519',
   'Room 520',
   'Room 521',
   'Room 541',
